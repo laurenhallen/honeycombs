@@ -1,1 +1,108 @@
 # honeycombs
+
+<div id="calculator">
+  <div id="display"></div>
+  <div class="buttons">
+  
+    <button onclick="clearDisplay()" >  Clear</button>
+    <button> </button>
+    <button> </button>
+    <button onclick="appendNumber('/')">% </button>
+    <button onclick="appendNumber(1)">1 </button>
+    <button onclick="appendNumber(2)">2 </button>
+    <button onclick="appendNumber(3)"> 3</button>
+    <button onclick="appendNumber('*')" >*</button>
+    <button onclick="appendNumber(4)">4 </button>
+    <button onclick="appendNumber(5)"> 5</button>
+    <button onclick="appendNumber(6)">6 </button>
+    <button onclick="appendNumber('-')" >- </button>
+    <button onclick="appendNumber(7)">7 </button>
+    <button onclick="appendNumber(8)"> 8</button>
+    <button onclick="appendNumber(9)"> 9</button>
+    <button onclick="appendNumber('+')"> +</button> 
+    <button onclick="appendNumber(0)" id="zero">0</button> 
+    <button onclick="appendNumber(.)">.</button> 
+    <button onclick="solve()"> =</button> 
+    
+    
+  </div>
+</div>
+
+#calculator{
+  padding:15px;
+  background-color:pink;
+  height:350px;
+  width:300px;
+}
+
+#display{
+  background-color:white;
+  height:50px;
+  margin:10px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:24% 24% 24% 24%;
+  grid-row-gap:5px;
+  grid-column-gap:5px; 
+}
+button{
+  height:50px;
+}
+
+#zero{
+  grid-column:1/span 2;
+}
+
+var display=document.getElementById('display')
+
+function appendNumber(number){
+  var stringValue= String(number)
+  display.innerHTML += stringValue
+}
+
+function solve(operation='+'){
+  var text=display.innerHTML
+  var solution=0
+  
+  if (text.indexOf('+') > 0){
+    var items= display.innerHTML.split ('+')
+
+    for (var i= 0; i< items.length; i = i + 1){
+      var item= items[i]
+      if (item.indexOf('-') > 0){
+        var subtraction= item.split('-')
+        solution += Number(subtraction[0]) - Number(subtraction[1])
+      } else {
+        solution += Number(item)
+      }
+    }
+    
+    display.innerHTML = solution
+  }
+  
+ 
+  // if (text.indexOf('-') > 0){
+  //   var items= display.innerHTML.split ('-')
+  //   solution= Number(items [0]) - Number(items [1])
+  // }
+   // if (text.indexOf('*') > 0){
+  //   var items= display.innerHTML.split ('*')
+  //   solution= Number(items [0]) * Number(items [1])
+  // }
+  // if (text.indexOf('/') > 0){
+  //   var items= display.innerHTML.split ('/')
+  //   solution= Number(items [0]) / Number(items [1])
+  // }
+  
+  display.innerHTML= String(solution).substring(0,5)
+}
+
+function clearDisplay(){
+  display.innerHTML ='  '
+}
