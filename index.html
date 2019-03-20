@@ -27,7 +27,7 @@
     
   </div>
 </div>
-
+<style>
 #calculator{
   padding:15px;
   background-color:pink;
@@ -58,7 +58,8 @@ button{
 #zero{
   grid-column:1/span 2;
 }
-
+</style>
+<script>
 var display=document.getElementById('display')
 
 function appendNumber(number){
@@ -92,3 +93,4 @@ function solve(operation='+'){
 function clearDisplay(){
   display.innerHTML ='  '
 }
+</script>
